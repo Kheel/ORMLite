@@ -22,6 +22,9 @@ public class Book {
     @DatabaseField(columnName = "TITLE", canBeNull = false)
     private String title;
 
+    @DatabaseField(columnName = "AUTHOR", canBeNull = false)
+    private String author;
+
     @DatabaseField(columnName = "DESCRIPTION", dataType = DataType.LONG_STRING)
     private String description;
 
@@ -34,11 +37,19 @@ public class Book {
     @DatabaseField(columnName = "ADDED_DATE")
     private Date addedDate;
 
-    @DatabaseField(columnName = "DATE_RELASE", dataType = DataType.DATE_STRING, format = "yyyy-MM-DD")
+    @DatabaseField(columnName = "DATE_RELASE", dataType = DataType.DATE_STRING, format = "yyyy-mm-dd")
     private Date dateRelase;
 
     @DatabaseField(columnName = "RATING", width = 1)
     private String rating;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     @DatabaseField(columnName = "BORROWED", defaultValue = "false")
     private boolean borrowed;
@@ -105,5 +116,29 @@ public class Book {
 
     public void setBorrowed(boolean borrowed) {
         this.borrowed = borrowed;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", isbn='" + isbn + '\'' +
+                ", addedDate=" + addedDate +
+                ", dateRelase=" + dateRelase +
+                ", rating='" + rating + '\'' +
+                ", borrowed=" + borrowed +
+                '}';
     }
 }
