@@ -107,6 +107,22 @@ public class MainForeignFields {
 
         Book bookq = dao.queryForId(3);
         System.out.println("Po zapytaniu do bazy danych " + bookq);
+
+        author = daoAuthor.queryForId(1);
+        author.getBooks().forEach(e->{
+            e.setTitle("Władca Pierścieni Blablabla");
+            try {
+                dao.createOrUpdate(e);
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        });
+        //daoAuthor.createOrUpdate(author);// nie jest juz potrzebny
+        daoAuthor.refresh(author);
+        author.getBooks().forEach(e->{
+            System.out.println("Zmiana tytułu "+e.getTitle());
+        });
+
         /*
 
         GenericRawResults<String[]> rawResults = dao.queryRaw("SELECT * FROM books");
