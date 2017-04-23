@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by Admin on 2017-04-10.
  */
-public class MainQuery {
+public class MainForeignFields {
 
     public static void main (String[] args) throws SQLException, IOException, ParseException {
         System.out.println("Hello world");
@@ -36,7 +36,9 @@ public class MainQuery {
         // if you need to create the 'accounts' table make this call
 
         TableUtils.dropTable(connectionSource, Book.class, true);
+        TableUtils.dropTable(connectionSource, Author.class, true);
         TableUtils.createTableIfNotExists(connectionSource, Book.class);
+        TableUtils.createTableIfNotExists(connectionSource, Author.class);
 
         //Władca Pierścieni
         Book book = new Book();
@@ -85,13 +87,27 @@ public class MainQuery {
         book3.setPrice(50.99);
 
         Dao<Book, Integer> dao = DaoManager.createDao(connectionSource, Book.class); // metoda statyczna createDao, przekazujemy połaczenie do bazdy danych, nazwe naszej klasy
+        Dao<Author, Integer> daoAuthor =DaoManager.createDao(connectionSource, Author.class);
+
+        Author author = new Author();
+        author.setName("Tolkien");
         // <parametr naszej klasy, naszego id>
 
-        dao.create(book);
         dao.create(book2);
         dao.create(book3);
         System.out.println(book);
 
+        // daoAuthor.create(author); // mozemy sie pozbyc po dopisaniu autocreate w Book
+        book.setAuthor(author);
+        dao.create(book);
+
+       // daoAuthor.refresh(book.getAuthor()); // // mozemy sie pozbyc po dopisaniu autorefresh w Book
+
+        System.out.println("Po zapisie do bazy danych " + book);
+
+        Book bookq = dao.queryForId(3);
+        System.out.println("Po zapytaniu do bazy danych " + bookq);
+        /*
 
         GenericRawResults<String[]> rawResults = dao.queryRaw("SELECT * FROM books");
         List<String[]> result = rawResults.getResults(); //tablica stringów , 3 ksiązki - 3 tablice
@@ -165,7 +181,7 @@ public class MainQuery {
         System.out.println(booksUpdate);
         System.out.println();
 
-
+        */
         /*
         book.setTitle("Hobbit");
         dao.update(book);

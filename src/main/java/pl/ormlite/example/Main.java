@@ -40,7 +40,6 @@ public class Main {
         //Władca Pierścieni
         Book book = new Book();
         book.setTitle("Władca Pierścieni");
-        book.setAuthor("Tolkien");
         book.setDescription("Wielkie dzieło Tolkiena");
         book.setIsbn("1111");
         book.setAddedDate(new Date());
@@ -57,7 +56,6 @@ public class Main {
         //Piesn Lodu i Ognia
         Book book2 = new Book();
         book2.setTitle("Pieśń Lodu i Ognia");
-        book2.setAuthor("G.R.R. Martin");
         book2.setDescription("Gra o Tron");
         book2.setIsbn("2222");
         book2.setAddedDate(new Date());
@@ -73,7 +71,6 @@ public class Main {
         //Wiedzmin
         Book book3 = new Book();
         book3.setTitle("Wiedzmin");
-        book3.setAuthor("Sapkowski");
         book3.setDescription("Cykl odpowiadań o Geralcie");
         book3.setIsbn("3333");
         book3.setAddedDate(new Date());
@@ -94,6 +91,7 @@ public class Main {
         dao.create(book3);
         System.out.println(book);
 
+        /*
         GenericRawResults<String[]> rawResults = dao.queryRaw("SELECT * FROM books");
         List<String[]> result = rawResults.getResults(); //tablica stringów , 3 ksiązki - 3 tablice
         result.forEach( e->{
@@ -132,7 +130,7 @@ public class Main {
 
         double maxUnits = dao.queryRawValue("SELECT AVG(price) FROM books");
         System.out.println(maxUnits);
-
+        */
 
         /*
         book.setTitle("Hobbit");

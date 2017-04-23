@@ -22,8 +22,8 @@ public class Book {
     @DatabaseField(columnName = "TITLE", canBeNull = false)
     private String title;
 
-    @DatabaseField(columnName = "AUTHOR", canBeNull = false)
-    private String author;
+    @DatabaseField(columnName = "AUTHOR_ID" , foreign = true, foreignAutoCreate = true , foreignAutoRefresh = true )
+    private Author author; //author_id
 
     @DatabaseField(columnName = "DESCRIPTION", dataType = DataType.LONG_STRING)
     private String description;
@@ -42,14 +42,6 @@ public class Book {
 
     @DatabaseField(columnName = "RATING", width = 1)
     private String rating;
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     @DatabaseField(columnName = "BORROWED", defaultValue = "false")
     private boolean borrowed;
@@ -126,12 +118,20 @@ public class Book {
         this.id = id;
     }
 
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
+                ", author=" + author +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", isbn='" + isbn + '\'' +
@@ -141,4 +141,5 @@ public class Book {
                 ", borrowed=" + borrowed +
                 '}';
     }
+
 }
