@@ -1,0 +1,7 @@
+pl\ormlite\example\Account.class
+pl\ormlite\example\Book.class
+pl\ormlite\example\Author.class
+pl\ormlite\example\Main.class
+pl\ormlite\example\MainQuery.class
+pl\ormlite\example\MainForeignFields.class
+pl\ormlite\example\MainPostgreSQL.class

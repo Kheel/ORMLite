@@ -39,6 +39,7 @@
             <artifactId>postgresql</artifactId>
             <version>9.3-1102.jdbc41</version>
         </dependency>
+
     </dependencies>
 
     <repositories>
